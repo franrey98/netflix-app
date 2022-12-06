@@ -11,7 +11,7 @@ const Main = () => {
     <div style={{ width: "100%" }}>
       <StyleMain>
         <Title>* Popular Movies</Title>
-        <ViewAll>View All</ViewAll>
+        <ViewAll>View All testbranch</ViewAll>
       </StyleMain>
     </div>
   );
