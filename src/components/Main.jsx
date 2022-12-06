@@ -1,29 +1,30 @@
 import React, { useEffect } from "react";
+import ContainerPopularMovies from "./ContainerPopularMovies";
 import styled from "styled-components";
-import { useMovies } from "../hooks/useMovies";
 
 const Main = () => {
-  const { popularMovies } = useMovies();
-
-  console.log(popularMovies);
-
   return (
     <div style={{ width: "100%" }}>
-      <StyleMain>
-        <Title>* Popular Movies</Title>
-        <ViewAll>View All testbranch</ViewAll>
-      </StyleMain>
+      <Container>
+        <StyleMain>
+          <Title>* Popular Movies</Title>
+          <ViewAll>View All </ViewAll>
+        </StyleMain>
+        <ContainerPopularMovies />
+      </Container>
     </div>
   );
 };
+
+const Container = styled.div`
+  padding-left: 10rem;
+  padding-right: 10rem;
+`;
 
 const StyleMain = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding-left: 10rem;
-  padding-right: 10rem;
 `;
 
 const Title = styled.h2`

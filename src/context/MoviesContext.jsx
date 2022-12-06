@@ -2,27 +2,27 @@ import { createContext, useEffect, useState } from "react";
 
 export const URL = process.env.REACT_APP_API_ROUTE;
 export const KEY = process.env.REACT_APP_API_KEY;
-
-console.log(process.env.REACT_APP_API_KEY);
-console.log(URL);
+export const URL_IMG = process.env.REACT_APP_IMAGE_ROUTE;
 
 export const MoviesContext = createContext({});
 
 export const MoviesProvider = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState([]);
 
+  console.log(popularMovies);
+
   useEffect(() => {
     requestMovies();
   }, []);
 
-  const requestMovies = () => {
+  const requestMovies = async () => {
     try {
-      fetch(`${URL}/movie/popular?api_key=${KEY}&language=en-US&page=1`)
+      await fetch(`${URL}/3/movie/popular?api_key=${KEY}&language=en-US&page=1`)
         .then((data) => {
           return data.json();
         })
         .then((data) => {
-          setPopularMovies(data);
+          setPopularMovies(data.results);
         });
     } catch (error) {
       console.log(error);
