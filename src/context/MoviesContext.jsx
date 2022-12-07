@@ -8,11 +8,14 @@ export const MoviesContext = createContext({});
 
 export const MoviesProvider = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState([]);
+  const [recentlyAdd, setRecentlyAdd] = useState([]);
 
   console.log(popularMovies);
+  console.log(recentlyAdd);
 
   useEffect(() => {
     requestMovies();
+    recentlyAdded();
   }, []);
 
   const requestMovies = async () => {
@@ -29,8 +32,24 @@ export const MoviesProvider = ({ children }) => {
     }
   };
 
+  const recentlyAdded = async () => {
+    try {
+      await fetch(
+        `${URL}/3/movie/upcoming?api_key=${KEY}&language=en-US&page=1`
+      )
+        .then((data) => {
+          return data.json();
+        })
+        .then((data) => {
+          setRecentlyAdd(data.results);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <MoviesContext.Provider value={{ popularMovies }}>
+    <MoviesContext.Provider value={{ popularMovies, recentlyAdd }}>
       {children}
     </MoviesContext.Provider>
   );

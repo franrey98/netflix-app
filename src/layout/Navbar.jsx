@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import img from "../img/pulpfiction.jpg";
+import { BsSearch } from "react-icons/bs";
 
 const Navbar = () => {
   return (
@@ -18,7 +19,10 @@ const Navbar = () => {
       <ConteinerMain>
         <TextMain>Your favourite movies.Explained.</TextMain>
         <Text>Figure out what happened. Then find out why.</Text>
-        <InputSearch placeholder="*  Search for a movie..." />
+        <div style={{ position: "relative" }}>
+          <BsSearch className="icon-search" />
+          <InputSearch placeholder="  Search for a movie..." />
+        </div>
       </ConteinerMain>
     </ImgBg>
   );
@@ -26,7 +30,7 @@ const Navbar = () => {
 
 // Uno lleva a pagina de inicio, el otro al login.
 const Title = styled.h2`
-  font-size: 1.5em;
+  font-size: 26px;
   text-align: center;
   color: #ffffff;
 `;
@@ -35,14 +39,14 @@ const Conteiner = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding-top: 2rem;
+  padding-top: 1rem;
   padding-left: 10rem;
   padding-right: 10rem;
 `;
 
 const FlexItems = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 2rem;
 `;
 
@@ -59,6 +63,7 @@ const Button = styled.button`
 const ButtonSignUp = styled.button`
   font-size: 1.5em;
   text-align: center;
+  background: none;
   color: #be697e;
   border: 2px solid;
   border-radius: 2rem;
@@ -74,7 +79,7 @@ const ConteinerMain = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  padding-bottom: 15rem;
   padding-left: 7rem;
   padding-right: 7rem;
 `;
@@ -94,7 +99,7 @@ const Text = styled.p`
 const InputSearch = styled.input`
   border: 1px solid;
   margin-top: 1rem;
-  padding-left: 3rem;
+  padding-left: 4rem;
   padding-right: 9rem;
   padding-top: 14px;
   padding-bottom: 14px;

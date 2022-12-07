@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Home from "../pages/Home";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-
+// AGREGAR FUENTESSSSSSSSSS
 const Layout = () => {
   return (
     <Container>
