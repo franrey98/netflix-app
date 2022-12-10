@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CreateAccount from "../components/CreateAccount";
 import Home from "../pages/Home";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
@@ -11,6 +12,7 @@ const Layout = () => {
       <Width>
         <Home />
       </Width>
+      <CreateAccount />
       <Footer />
     </Container>
   );

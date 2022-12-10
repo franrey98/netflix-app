@@ -2,7 +2,6 @@ import React from "react";
 import { URL_IMG } from "../context/MoviesContext";
 
 const CardRecently = ({ card }) => {
-  console.log(card);
   return (
     <div>
       {" "}

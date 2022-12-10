@@ -6,7 +6,7 @@ import { BsSearch } from "react-icons/bs";
 const Navbar = () => {
   return (
     <ImgBg>
-      <Conteiner>
+      <Container>
         <FlexItems>
           <Title>Netflix App</Title>
           <Button>Browse +</Button>
@@ -15,15 +15,15 @@ const Navbar = () => {
           <Title>Login</Title>
           <ButtonSignUp>Sign Up</ButtonSignUp>
         </FlexItems>
-      </Conteiner>
-      <ConteinerMain>
+      </Container>
+      <ContainerMain>
         <TextMain>Your favourite movies.Explained.</TextMain>
         <Text>Figure out what happened. Then find out why.</Text>
         <div style={{ position: "relative" }}>
           <BsSearch className="icon-search" />
           <InputSearch placeholder="  Search for a movie..." />
         </div>
-      </ConteinerMain>
+      </ContainerMain>
     </ImgBg>
   );
 };
@@ -35,7 +35,7 @@ const Title = styled.h2`
   color: #ffffff;
 `;
 
-const Conteiner = styled.div`
+const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -75,7 +75,7 @@ const ButtonSignUp = styled.button`
   font-weight: 600;
 `;
 
-const ConteinerMain = styled.div`
+const ContainerMain = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

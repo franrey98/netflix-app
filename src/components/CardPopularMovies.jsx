@@ -2,6 +2,7 @@ import React from "react";
 import { URL_IMG } from "../context/MoviesContext";
 
 const CardPopularMovies = ({ item }) => {
+  console.log(item);
   return (
     <div>
       <img

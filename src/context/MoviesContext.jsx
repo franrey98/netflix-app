@@ -9,9 +9,7 @@ export const MoviesContext = createContext({});
 export const MoviesProvider = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState([]);
   const [recentlyAdd, setRecentlyAdd] = useState([]);
-
-  console.log(popularMovies);
-  console.log(recentlyAdd);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     requestMovies();
@@ -25,6 +23,7 @@ export const MoviesProvider = ({ children }) => {
           return data.json();
         })
         .then((data) => {
+          setIsLoading(false);
           setPopularMovies(data.results);
         });
     } catch (error) {
@@ -49,7 +48,7 @@ export const MoviesProvider = ({ children }) => {
   };
 
   return (
-    <MoviesContext.Provider value={{ popularMovies, recentlyAdd }}>
+    <MoviesContext.Provider value={{ popularMovies, recentlyAdd, isLoading }}>
       {children}
     </MoviesContext.Provider>
   );

@@ -1,7 +1,12 @@
 import React from "react";
+import styled from "styled-components";
 
 const Footer = () => {
-  return <div>Footer</div>;
+  return <Box>Footer</Box>;
 };
+
+const Box = styled.div`
+  margin-top: 2rem;
+`;
 
 export default Footer;

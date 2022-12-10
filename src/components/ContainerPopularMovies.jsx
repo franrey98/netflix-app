@@ -4,11 +4,18 @@ import { useMovies } from "../hooks/useMovies.jsx";
 import CardPopularMovies from "./CardPopularMovies.jsx";
 
 const ContainerPopularMovies = () => {
-  const { popularMovies } = useMovies();
+  const { popularMovies, isLoading } = useMovies();
+
+  if (isLoading)
+    return (
+      <div>
+        <h1>El usuario se esta logueando, aguarde unos segundos</h1>
+      </div>
+    );
   return (
     <Grid>
-      {popularMovies?.slice(0, 9).map((item) => (
-        <CardPopularMovies item={item} />
+      {popularMovies?.slice(0, 10).map((item) => (
+        <CardPopularMovies item={item} key={item.id} />
       ))}
     </Grid>
   );

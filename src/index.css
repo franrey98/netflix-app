@@ -12,3 +12,11 @@
   color: rgb(187, 76, 12);
   font-size: 30px;
 }
+
+.full-height {
+  grid-column: 1 / 4;
+}
+
+.half-height {
+  grid-row: 3 / 4;
+}

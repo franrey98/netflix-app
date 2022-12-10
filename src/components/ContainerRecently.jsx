@@ -8,7 +8,7 @@ const ContainerRecently = () => {
   return (
     <Flex>
       {recentlyAdd?.slice(0, 5).map((item) => (
-        <CardRecently card={item} />
+        <CardRecently card={item} key={item.id} />
       ))}
     </Flex>
   );
