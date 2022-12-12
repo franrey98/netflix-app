@@ -2,18 +2,27 @@ import React from "react";
 import styled from "styled-components";
 import img from "../img/pulpfiction.jpg";
 import { BsSearch } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import { Link as LinkSmoth } from "react-scroll";
 
 const Navbar = () => {
   return (
     <ImgBg>
       <Container>
         <FlexItems>
-          <Title>Netflix App</Title>
-          <Button>Browse +</Button>
+          <Title to="/">Netflix App</Title>
+          <Button to="/BrowseMore">Browse +</Button>
         </FlexItems>
         <FlexItems>
-          <Title>Login</Title>
-          <ButtonSignUp>Sign Up</ButtonSignUp>
+          <Title to="/login">Login</Title>
+          <ButtonSignUp
+            smooth={true}
+            offset={50}
+            duration={500}
+            to="createAccount"
+          >
+            Sign Up
+          </ButtonSignUp>
         </FlexItems>
       </Container>
       <ContainerMain>
@@ -29,7 +38,8 @@ const Navbar = () => {
 };
 
 // Uno lleva a pagina de inicio, el otro al login.
-const Title = styled.h2`
+const Title = styled(Link)`
+  text-decoration: none;
   font-size: 26px;
   text-align: center;
   color: #ffffff;
@@ -39,7 +49,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding-top: 1rem;
+  padding-top: 2rem;
   padding-left: 10rem;
   padding-right: 10rem;
 `;
@@ -50,7 +60,8 @@ const FlexItems = styled.div`
   gap: 2rem;
 `;
 
-const Button = styled.button`
+const Button = styled(Link)`
+  text-decoration: none;
   font-size: 1.5em;
   font-weight: 700;
   text-align: center;
@@ -60,11 +71,11 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const ButtonSignUp = styled.button`
+const ButtonSignUp = styled(LinkSmoth)`
   font-size: 1.5em;
   text-align: center;
   background: none;
-  color: #be697e;
+  color: #c85a14;
   border: 2px solid;
   border-radius: 2rem;
   cursor: pointer;
@@ -73,6 +84,12 @@ const ButtonSignUp = styled.button`
   padding-top: 6px;
   padding-bottom: 6px;
   font-weight: 600;
+  :hover {
+    transition: all 0.3s;
+    background-color: #c85a14;
+    color: white;
+    border-color: #c85a14;
+  }
 `;
 
 const ContainerMain = styled.div`

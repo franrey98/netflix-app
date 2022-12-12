@@ -50,7 +50,7 @@ const StyleMain = styled.div`
 
 const FlexIcon = styled.div`
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 10px;
 `;
 

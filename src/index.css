@@ -1,3 +1,7 @@
+#root {
+  font-family: "Signika", sans-serif;
+}
+
 .icon-search {
   color: #191919;
   position: absolute;
@@ -9,8 +13,12 @@
 }
 
 .icon-main {
-  color: rgb(187, 76, 12);
-  font-size: 30px;
+  color: #c85a14;
+  width: 28px;
+  height: 28px;
+  left: 21px;
+  top: 63%;
+  transform: translateY(50%);
 }
 
 .full-height {
