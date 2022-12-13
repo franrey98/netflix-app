@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useMovies } from "../hooks/useMovies.jsx";
+import BrowseMore from "../pages/BrowseMore.jsx";
 import CardPopularMovies from "./CardPopularMovies.jsx";
 
 const ContainerPopularMovies = () => {
@@ -13,18 +14,15 @@ const ContainerPopularMovies = () => {
       </div>
     );
   return (
-    <Grid>
-      {popularMovies?.slice(0, 10).map((item) => (
+    <Box>
+      <BrowseMore />
+      {/* {popularMovies?.slice(0, 10).map((item) => (
         <CardPopularMovies item={item} key={item.id} />
-      ))}
-    </Grid>
+      ))} */}
+    </Box>
   );
 };
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
-`;
+const Box = styled.div``;
 
 export default ContainerPopularMovies;

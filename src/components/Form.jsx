@@ -36,8 +36,14 @@ const Form = () => {
             <Input
               placeholder="Last Name"
               type="text"
-              {...register("lastname")}
+              {...register("lastname", {
+                required: true,
+                maxLength: 15,
+              })}
             />
+            {errors.lastname?.type === "required" && (
+              <p>El campo es requerido</p>
+            )}
           </div>
         </StyleName>
         <ContainerInput>
@@ -45,9 +51,11 @@ const Form = () => {
             placeholder="Email"
             type="email"
             {...register("email", {
+              required: true,
               pattern: /\S+@\S+\.\S+/,
             })}
           />
+          {errors.email?.type === "required" && <p>El mail es requerido</p>}
           {errors.email?.type === "pattern" && (
             <p>El formato del email es incorrecto</p>
           )}
@@ -56,8 +64,21 @@ const Form = () => {
           <Input
             placeholder="Password"
             type="password"
-            {...register("password")}
+            {...register("password", {
+              required: true,
+              minLength: 6,
+              maxLength: 15,
+            })}
           />
+          {errors.password?.type === "required" && (
+            <p>La contraseña es requerida</p>
+          )}
+          {errors.password?.type === "minLength" && (
+            <p>La contraseña es muy corta</p>
+          )}
+          {errors.password?.type === "maxLength" && (
+            <p>La contraseña es muy larga</p>
+          )}
         </ContainerInput>
         <BoxFlex>
           <p>
@@ -74,6 +95,7 @@ const Form = () => {
 const Container = styled.div`
   color: white;
   display: flex;
+  gap: 1.5rem;
   flex-direction: column;
   justify-content: center;
 `;
@@ -97,8 +119,7 @@ const ContainerInput = styled.div`
   width: 100%;
 `;
 const Input = styled.input`
-  padding: 10px 10px 10px 15px;
-
+  padding: 15px 10px 15px 15px;
   border-radius: 5px;
   border: none;
   width: 100%;

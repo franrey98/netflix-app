@@ -5,7 +5,13 @@ const CardPopularMovies = ({ item }) => {
   return (
     <div>
       <img
-        style={{ width: "100%", height: "400px" }}
+        style={{
+          width: "90%",
+          height: "350px",
+          objectFit: "cover",
+          marginBottom: "10px",
+          borderRadius: "1rem",
+        }}
         src={`${URL_IMG + item.poster_path}`}
         alt="poster img"
       />

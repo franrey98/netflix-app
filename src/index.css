@@ -21,10 +21,39 @@
   transform: translateY(50%);
 }
 
+.icon-viewall {
+  width: 27px;
+  height: 24px;
+  left: 21px;
+  top: 63%;
+  transform: translateY(27%);
+  margin-left: 5px;
+}
+
 .full-height {
   grid-column: 1 / 4;
 }
 
 .half-height {
   grid-row: 3 / 4;
+}
+
+.slick-prev {
+  width: 70px !important;
+  height: 70px !important;
+  top: 48% !important;
+}
+
+.slick-next {
+  width: 70px !important;
+  height: 70px !important;
+  top: 48% !important;
+}
+
+.slick-prev {
+  left: -80px !important;
+}
+
+.slick-next {
+  right: -80px;
 }

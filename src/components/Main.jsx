@@ -5,6 +5,7 @@ import ContainerRecently from "./ContainerRecently";
 import { SlFire } from "react-icons/sl";
 import { RiStackLine } from "react-icons/ri";
 import { BsArrowRight } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Main = () => {
   return (
@@ -16,8 +17,10 @@ const Main = () => {
             <Title>Popular Movies</Title>
           </FlexIcon>
           <FlexIcon>
-            <ViewAll>View All </ViewAll>
-            <BsArrowRight />
+            <ViewAll to="BrowseMore">
+              View All
+              <BsArrowRight className="icon-viewall" />
+            </ViewAll>
           </FlexIcon>
         </StyleMain>
         <ContainerPopularMovies />
@@ -27,8 +30,9 @@ const Main = () => {
             <Title>Recently Added</Title>
           </FlexIcon>
           <FlexIcon>
-            <ViewAll>View All</ViewAll>
-            <BsArrowRight />
+            <ViewAll to="BrowseMore">
+              View All <BsArrowRight className="icon-viewall" />
+            </ViewAll>
           </FlexIcon>
         </StyleMain>
         <ContainerRecently />
@@ -62,10 +66,12 @@ const Title = styled.h2`
   color: #000000;
 `;
 
-const ViewAll = styled.p`
+const ViewAll = styled(Link)`
   font-size: 1em;
   text-align: center;
   color: #000000;
+
+  text-decoration: none;
 `;
 
 export default Main;

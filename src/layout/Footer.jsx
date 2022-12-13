@@ -24,7 +24,7 @@ const Footer = () => {
             <A href="#">Facebook</A>
             <A href="#">Twitter</A>
           </Nav>
-          <Text>c 2007-2014 MovieRountable</Text>
+          <Text>© 2007-2014 MovieRountable</Text>
         </BoxNav>
       </Container>
     </Box>

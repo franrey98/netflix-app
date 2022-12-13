@@ -46,12 +46,12 @@ const ContainerText = styled.div`
   flex-direction: column;
 `;
 const TextMain = styled.h3`
-  font-size: 28px;
+  font-size: 34px;
   font-weight: 700;
   color: white;
 `;
 const Text = styled.p`
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 400;
   color: white;
 `;
@@ -63,6 +63,7 @@ const List = styled.ul`
 
 const ItemList = styled.li`
   color: white;
+  font-size: 18px;
 `;
 
 export default CreateAccount;
