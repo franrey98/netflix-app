@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import img from "../img/spiderman.jpeg";
-import Form from "./Form";
+import Form from "./Form/Form";
 
 const CreateAccount = () => {
   return (

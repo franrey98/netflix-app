@@ -55,5 +55,5 @@
 }
 
 .slick-next {
-  right: -80px;
+  right: -80px !important;
 }

@@ -10,7 +10,7 @@ export const MoviesProvider = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState([]);
   const [recentlyAdd, setRecentlyAdd] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  console.log(recentlyAdd);
   useEffect(() => {
     requestMovies();
     recentlyAdded();

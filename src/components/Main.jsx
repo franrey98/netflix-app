@@ -1,11 +1,11 @@
 import React from "react";
-import ContainerPopularMovies from "./ContainerPopularMovies";
 import styled from "styled-components";
-import ContainerRecently from "./ContainerRecently";
 import { SlFire } from "react-icons/sl";
 import { RiStackLine } from "react-icons/ri";
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import ContainerRecently from "./Container/ContainerRecently";
+import ContainerPopularMovies from "./Container/ContainerPopularMovies";
 
 const Main = () => {
   return (
