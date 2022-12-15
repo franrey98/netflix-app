@@ -21,7 +21,7 @@ const Form = () => {
       <Title>Create Account</Title>
       <FormAccount onSubmit={handleSubmit(onSubmit)}>
         <StyleName>
-          <div>
+          <div style={{ width: "100%" }}>
             <Input
               placeholder="Name"
               type="text"
@@ -32,7 +32,7 @@ const Form = () => {
             />
             {errors.name?.type === "required" && <p>El campo es requerido</p>}
           </div>
-          <div>
+          <div style={{ width: "100%" }}>
             <Input
               placeholder="Last Name"
               type="text"
@@ -119,7 +119,7 @@ const ContainerInput = styled.div`
   width: 100%;
 `;
 const Input = styled.input`
-  padding: 15px 10px 15px 15px;
+  padding: 15px 0px 15px 0px;
   border-radius: 5px;
   border: none;
   width: 100%;
@@ -128,6 +128,7 @@ const Input = styled.input`
 const BoxFlex = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 2rem;
   width: 100%;
 `;
 

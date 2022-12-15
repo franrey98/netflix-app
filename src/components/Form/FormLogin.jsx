@@ -17,37 +17,11 @@ const FormLogin = () => {
 
   return (
     <Container>
-      <Title>Create Account</Title>
+      <Title>Log In</Title>
       <FormAccount onSubmit={handleSubmit(onSubmit)}>
-        <StyleName>
-          <div>
-            <Input
-              placeholder="Name"
-              type="text"
-              {...register("name", {
-                required: true,
-                maxLength: 15,
-              })}
-            />
-            {errors.name?.type === "required" && <p>El campo es requerido</p>}
-          </div>
-          <div>
-            <Input
-              placeholder="Last Name"
-              type="text"
-              {...register("lastname", {
-                required: true,
-                maxLength: 15,
-              })}
-            />
-            {errors.lastname?.type === "required" && (
-              <p>El campo es requerido</p>
-            )}
-          </div>
-        </StyleName>
         <ContainerInput>
           <Input
-            placeholder="Email"
+            placeholder="    Email"
             type="email"
             {...register("email", {
               required: true,
@@ -61,7 +35,7 @@ const FormLogin = () => {
         </ContainerInput>
         <ContainerInput>
           <Input
-            placeholder="Password"
+            placeholder="    Password"
             type="password"
             {...register("password", {
               required: true,
@@ -80,11 +54,7 @@ const FormLogin = () => {
           )}
         </ContainerInput>
         <BoxFlex>
-          <p>
-            Already have an account?{" "}
-            <ButtonLink to="/login">Sign In</ButtonLink>
-          </p>
-          <Button type="submit">Create Account</Button>
+          <Button type="submit">Log In</Button>
         </BoxFlex>
       </FormAccount>
     </Container>
@@ -93,6 +63,9 @@ const FormLogin = () => {
 
 const Container = styled.div`
   color: white;
+  background-color: black;
+  padding: 2rem 5rem 7rem 5rem;
+  border-radius: 5px;
   display: flex;
   gap: 1.5rem;
   flex-direction: column;
@@ -107,18 +80,13 @@ const Title = styled.h3`
 
 const FormAccount = styled.form``;
 
-const StyleName = styled.div`
-  display: flex;
-  gap: 2rem;
-`;
-
 const ContainerInput = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
   width: 100%;
 `;
 const Input = styled.input`
-  padding: 15px 10px 15px 15px;
+  padding: 15px 0px 15px 0px;
   border-radius: 5px;
   border: none;
   width: 100%;
@@ -131,7 +99,8 @@ const BoxFlex = styled.div`
 `;
 
 const Button = styled.button`
-  border-radius: 2rem;
+  border-radius: 5px;
+  width: 100%;
   padding: 15px;
   font-weight: 700;
   color: white;
@@ -140,13 +109,6 @@ const Button = styled.button`
   background-color: #c85a14;
   cursor: pointer;
   border: none;
-`;
-
-const ButtonLink = styled(Link)`
-  text-decoration: none;
-  color: white;
-  font-size: 18px;
-  color: #c85a14;
 `;
 
 export default FormLogin;

@@ -9,8 +9,9 @@ export const MoviesContext = createContext({});
 export const MoviesProvider = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState([]);
   const [recentlyAdd, setRecentlyAdd] = useState([]);
+  const [moviesSearch, setMoviesSearch] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(recentlyAdd);
+
   useEffect(() => {
     requestMovies();
     recentlyAdded();
@@ -47,8 +48,32 @@ export const MoviesProvider = ({ children }) => {
     }
   };
 
+  const searchMovie = async (movie) => {
+    try {
+      await fetch(
+        `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${movie}`
+      )
+        .then((data) => {
+          return data.json();
+        })
+        .then((data) => {
+          setMoviesSearch(data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <MoviesContext.Provider value={{ popularMovies, recentlyAdd, isLoading }}>
+    <MoviesContext.Provider
+      value={{
+        popularMovies,
+        recentlyAdd,
+        isLoading,
+        searchMovie,
+        moviesSearch,
+      }}
+    >
       {children}
     </MoviesContext.Provider>
   );

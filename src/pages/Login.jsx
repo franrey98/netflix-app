@@ -27,7 +27,7 @@ const ImgBg = styled.div`
 `;
 
 const Container = styled.div`
-  padding-top: 2rem;
+  padding-top: 12rem;
   margin: auto;
   width: 35%;
   color: white;

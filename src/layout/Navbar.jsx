@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import img from "../img/pulpfiction.jpg";
 import { BsSearch } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Link as LinkSmoth } from "react-scroll";
+import { useMovies } from "../hooks/useMovies";
 
 const Navbar = () => {
+  const { searchMovie } = useMovies();
+
+  const navigate = useNavigate();
+
+  const [movie, setMovie] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (movie === "") {
+      console.log("La busqueda esta vacia");
+      return;
+    }
+    searchMovie(movie);
+    navigate("resultSearch");
+  };
+
   return (
     <ImgBg>
       <Container>
@@ -25,12 +42,16 @@ const Navbar = () => {
           </ButtonSignUp>
         </FlexItems>
       </Container>
-      <ContainerMain>
+      <ContainerMain onSubmit={handleSubmit}>
         <TextMain>Your favourite movies.Explained.</TextMain>
         <Text>Figure out what happened. Then find out why.</Text>
         <div style={{ position: "relative" }}>
           <BsSearch className="icon-search" />
-          <InputSearch placeholder="  Search for a movie..." />
+          <InputSearch
+            onChange={(e) => setMovie(e.target.value)}
+            placeholder="  Search for a movie..."
+          />
+          <ButtonSearch type="submit">Search</ButtonSearch>
         </div>
       </ContainerMain>
     </ImgBg>
@@ -70,6 +91,23 @@ const Button = styled(Link)`
   background: none;
   cursor: pointer;
 `;
+const ButtonSearch = styled.button`
+  text-decoration: none;
+  font-size: 23px;
+  font-weight: 500;
+  text-align: center;
+  color: #fafafa;
+  border: none;
+  background: #1ea2d6;
+  cursor: pointer;
+  margin-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 2rem;
+  margin-left: 10px;
+`;
 
 const ButtonSignUp = styled(LinkSmoth)`
   font-size: 1.5em;
@@ -92,7 +130,7 @@ const ButtonSignUp = styled(LinkSmoth)`
   }
 `;
 
-const ContainerMain = styled.div`
+const ContainerMain = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
