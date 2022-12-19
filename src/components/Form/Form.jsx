@@ -23,7 +23,7 @@ const Form = () => {
         <StyleName>
           <div style={{ width: "100%" }}>
             <Input
-              placeholder="Name"
+              placeholder="   Name"
               type="text"
               {...register("name", {
                 required: true,
@@ -34,7 +34,7 @@ const Form = () => {
           </div>
           <div style={{ width: "100%" }}>
             <Input
-              placeholder="Last Name"
+              placeholder="   Last Name"
               type="text"
               {...register("lastname", {
                 required: true,
@@ -48,7 +48,7 @@ const Form = () => {
         </StyleName>
         <ContainerInput>
           <Input
-            placeholder="Email"
+            placeholder="   Email"
             type="email"
             {...register("email", {
               required: true,
@@ -62,7 +62,7 @@ const Form = () => {
         </ContainerInput>
         <ContainerInput>
           <Input
-            placeholder="Password"
+            placeholder="   Password"
             type="password"
             {...register("password", {
               required: true,

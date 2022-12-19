@@ -5,6 +5,7 @@ import { BsSearch } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { Link as LinkSmoth } from "react-scroll";
 import { useMovies } from "../hooks/useMovies";
+import Errors from "../utils/Errors";
 
 const Navbar = () => {
   const { searchMovie } = useMovies();
@@ -12,11 +13,11 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const [movie, setMovie] = useState("");
-
+  const [error, setError] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (movie === "") {
-      console.log("La busqueda esta vacia");
+      setError(true);
       return;
     }
     searchMovie(movie);
@@ -49,16 +50,18 @@ const Navbar = () => {
           <BsSearch className="icon-search" />
           <InputSearch
             onChange={(e) => setMovie(e.target.value)}
-            placeholder="  Search for a movie..."
+            placeholder={
+              error ? "The search is invalid" : " Search for a movie..."
+            }
           />
           <ButtonSearch type="submit">Search</ButtonSearch>
+          <br />
         </div>
       </ContainerMain>
     </ImgBg>
   );
 };
 
-// Uno lleva a pagina de inicio, el otro al login.
 const Title = styled(Link)`
   text-decoration: none;
   font-size: 26px;
