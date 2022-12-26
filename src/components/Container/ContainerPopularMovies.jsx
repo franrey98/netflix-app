@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useMovies } from "../../hooks/useMovies.jsx";
 import CarrouselPopular from "../Carrousel/CarrouselPopular.jsx";
 
+const Box = styled.div``;
+
 const ContainerPopularMovies = () => {
   const { isLoading } = useMovies();
 
@@ -18,7 +20,5 @@ const ContainerPopularMovies = () => {
     </Box>
   );
 };
-
-const Box = styled.div``;
 
 export default ContainerPopularMovies;

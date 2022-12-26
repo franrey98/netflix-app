@@ -2,22 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import img from "../img/bg-login.jpg";
 import Footer from "../layout/Footer";
-import { Link } from "react-router-dom";
 import FormLogin from "../components/Form/FormLogin";
-
-const Login = () => {
-  return (
-    <ImgBg>
-      <Logo to="/">Netflix App</Logo>
-      <Container>
-        <FormLogin />
-      </Container>
-      <BoxFooter>
-        <Footer />
-      </BoxFooter>
-    </ImgBg>
-  );
-};
+import Nav from "../components/Nav";
 
 const ImgBg = styled.div`
   width: 100%;
@@ -27,30 +13,37 @@ const ImgBg = styled.div`
 `;
 
 const Container = styled.div`
-  padding-top: 12rem;
+  padding-top: 2rem;
   margin: auto;
-  width: 35%;
+  width: 90%;
   color: white;
-`;
-
-const Logo = styled(Link)`
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding-top: 3rem;
-  padding-left: 6rem;
-  font-size: 24px;
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
-  margin: 0;
+  @media (min-width: 768px) {
+    padding-top: 6rem;
+    width: 35%;
+  }
 `;
 
 const BoxFooter = styled.div`
   background-color: white;
-  position: fixed;
   bottom: 0;
   width: 100%;
+  @media (min-width: 768px) {
+    position: fixed;
+  }
 `;
+
+const Login = () => {
+  return (
+    <ImgBg>
+      <Nav />
+      <Container>
+        <FormLogin />
+      </Container>
+      <BoxFooter>
+        <Footer />
+      </BoxFooter>
+    </ImgBg>
+  );
+};
 
 export default Login;

@@ -2,8 +2,70 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+
+const Container = styled.div`
+  color: white;
+  display: flex;
+  gap: 1.5rem;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const Title = styled.h3`
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+`;
+
+const FormAccount = styled.form``;
+
+const StyleName = styled.div`
+  display: flex;
+  gap: 2rem;
+`;
+
+const ContainerInput = styled.div`
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+`;
+const Input = styled.input`
+  padding: 15px 0px 15px 0px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+`;
+
+const BoxFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+`;
+
+const Button = styled.button`
+  border-radius: 2rem;
+  padding: 15px;
+  font-weight: 700;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: #c85a14;
+  cursor: pointer;
+  border: none;
+`;
+
+const ButtonLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  color: #c85a14;
+`;
 
 const Form = () => {
+  const { createSession, token } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -12,7 +74,14 @@ const Form = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("enviar formulario", data);
+    const { password, username } = data;
+    const values = {
+      password,
+      username,
+      request_token: token,
+    };
+
+    createSession(values);
     reset();
   };
 
@@ -23,14 +92,16 @@ const Form = () => {
         <StyleName>
           <div style={{ width: "100%" }}>
             <Input
-              placeholder="   Name"
+              placeholder="   Username"
               type="text"
-              {...register("name", {
+              {...register("username", {
                 required: true,
                 maxLength: 15,
               })}
             />
-            {errors.name?.type === "required" && <p>El campo es requerido</p>}
+            {errors.username?.type === "required" && (
+              <p>El campo es requerido</p>
+            )}
           </div>
           <div style={{ width: "100%" }}>
             <Input
@@ -91,64 +162,5 @@ const Form = () => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  color: white;
-  display: flex;
-  gap: 1.5rem;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const Title = styled.h3`
-  color: white;
-  font-size: 28px;
-  font-weight: 700;
-`;
-
-const FormAccount = styled.form``;
-
-const StyleName = styled.div`
-  display: flex;
-  gap: 2rem;
-`;
-
-const ContainerInput = styled.div`
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 100%;
-`;
-const Input = styled.input`
-  padding: 15px 0px 15px 0px;
-  border-radius: 5px;
-  border: none;
-  width: 100%;
-`;
-
-const BoxFlex = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  width: 100%;
-`;
-
-const Button = styled.button`
-  border-radius: 2rem;
-  padding: 15px;
-  font-weight: 700;
-  color: white;
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: #c85a14;
-  cursor: pointer;
-  border: none;
-`;
-
-const ButtonLink = styled(Link)`
-  text-decoration: none;
-  color: white;
-  font-size: 18px;
-  color: #c85a14;
-`;
 
 export default Form;

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useMovies } from "../../hooks/useMovies";
 import CarrouselRecently from "../Carrousel/CarrouselRecently";
 
+const Box = styled.div``;
+
 const ContainerRecently = () => {
   const { isLoading } = useMovies();
 
@@ -19,6 +21,5 @@ const ContainerRecently = () => {
     </Box>
   );
 };
-const Box = styled.div``;
 
 export default ContainerRecently;

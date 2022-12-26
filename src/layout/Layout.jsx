@@ -4,19 +4,6 @@ import CreateAccount from "../components/CreateAccount";
 import Home from "../pages/Home";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-// AGREGAR FUENTESSSSSSSSSS
-const Layout = () => {
-  return (
-    <Container>
-      <Navbar />
-      <Width>
-        <Home />
-      </Width>
-      <CreateAccount />
-      <Footer />
-    </Container>
-  );
-};
 
 const Container = styled.div`
   height: 100vh;
@@ -29,5 +16,18 @@ const Container = styled.div`
 const Width = styled.div`
   width: 100%;
 `;
+
+const Layout = () => {
+  return (
+    <Container>
+      <Navbar />
+      <Width>
+        <Home />
+      </Width>
+      <CreateAccount />
+      <Footer />
+    </Container>
+  );
+};
 
 export default Layout;

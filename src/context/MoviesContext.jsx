@@ -10,6 +10,7 @@ export const MoviesProvider = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState([]);
   const [recentlyAdd, setRecentlyAdd] = useState([]);
   const [moviesSearch, setMoviesSearch] = useState([]);
+  const [movieDetail, setMovieDetail] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -50,14 +51,26 @@ export const MoviesProvider = ({ children }) => {
 
   const searchMovie = async (movie) => {
     try {
-      await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${movie}`
-      )
+      await fetch(`${URL}/3/search/movie?api_key=${KEY}&query=${movie}`)
         .then((data) => {
           return data.json();
         })
         .then((data) => {
           setMoviesSearch(data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getDetailMovie = async (id) => {
+    try {
+      await fetch(`${URL}/3/movie/${id}?api_key=${KEY}`)
+        .then((data) => {
+          return data.json();
+        })
+        .then((data) => {
+          setMovieDetail(data);
         });
     } catch (error) {
       console.log(error);
@@ -72,6 +85,8 @@ export const MoviesProvider = ({ children }) => {
         isLoading,
         searchMovie,
         moviesSearch,
+        getDetailMovie,
+        movieDetail,
       }}
     >
       {children}

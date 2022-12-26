@@ -7,6 +7,43 @@ import { Link } from "react-router-dom";
 import ContainerRecently from "./Container/ContainerRecently";
 import ContainerPopularMovies from "./Container/ContainerPopularMovies";
 
+const Container = styled.div`
+  padding-left: 10rem;
+  padding-right: 10rem;
+  display: none;
+  @media (min-width: 880px) {
+    display: block;
+  }
+`;
+
+const StyleMain = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const FlexIcon = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+const Title = styled.h2`
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  font-size: 1.5em;
+  text-align: center;
+  color: #000000;
+`;
+
+const ViewAll = styled(Link)`
+  font-size: 1em;
+  text-align: center;
+  color: #000000;
+
+  text-decoration: none;
+`;
+
 const Main = () => {
   return (
     <div style={{ width: "100%" }}>
@@ -40,38 +77,5 @@ const Main = () => {
     </div>
   );
 };
-
-const Container = styled.div`
-  padding-left: 10rem;
-  padding-right: 10rem;
-`;
-
-const StyleMain = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const FlexIcon = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-
-const Title = styled.h2`
-  margin-top: 5rem;
-  margin-bottom: 3rem;
-  font-size: 1.5em;
-  text-align: center;
-  color: #000000;
-`;
-
-const ViewAll = styled(Link)`
-  font-size: 1em;
-  text-align: center;
-  color: #000000;
-
-  text-decoration: none;
-`;
 
 export default Main;

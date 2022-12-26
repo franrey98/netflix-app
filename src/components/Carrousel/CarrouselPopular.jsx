@@ -5,6 +5,8 @@ import { useMovies } from "../../hooks/useMovies";
 import CardPopularMovies from "../Cards/CardPopularMovies";
 import { SlickArrowLeft, SlickArrowRight } from "../../utils/arrows";
 
+const Box = styled.div``;
+
 const CarrouselPopular = () => {
   const { popularMovies } = useMovies();
 
@@ -22,16 +24,14 @@ const CarrouselPopular = () => {
     nextArrow: <SlickArrowRight />,
   };
   return (
-    <Box>
+    <>
       <Slider {...settings}>
         {popularMovies?.map((item) => (
           <CardPopularMovies item={item} key={item.id} />
         ))}
       </Slider>
-    </Box>
+    </>
   );
 };
-
-const Box = styled.div``;
 
 export default CarrouselPopular;

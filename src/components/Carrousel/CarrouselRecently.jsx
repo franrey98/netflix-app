@@ -5,6 +5,8 @@ import CardRecently from "../Cards/CardRecently";
 import { useMovies } from "../../hooks/useMovies";
 import { SlickArrowLeft, SlickArrowRight } from "../../utils/arrows";
 
+const Box = styled.div``;
+
 const CarrouselRecently = () => {
   const { recentlyAdd } = useMovies();
 
@@ -27,7 +29,5 @@ const CarrouselRecently = () => {
     </Box>
   );
 };
-
-const Box = styled.div``;
 
 export default CarrouselRecently;
