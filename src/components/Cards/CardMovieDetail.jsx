@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { URL_IMG } from "../../context/MoviesContext";
-import { useAuth } from "../../hooks/useAuth";
 import { useMovies } from "../../hooks/useMovies";
+import { formatTime } from "../../utils/arrows.js";
 
 const Img = styled.img`
   object-fit: contain;
@@ -26,10 +26,6 @@ const DisplayDetails = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-
-  @media (min-width: 1180px) {
-    padding-right: 15rem;
-  }
 `;
 
 const DisplayBox = styled.div`
@@ -51,8 +47,7 @@ const BoxDetails = styled.div`
 const ItemDetail = styled.div`
   color: white;
   display: flex;
-  gap: 1rem;
-  margin: 0 6px 0 6px;
+  gap: 5px;
 `;
 
 const TitleProduction = styled.p`
@@ -76,38 +71,53 @@ const ImgBack = styled.div`
 
 const CardMovieDetail = () => {
   const { movieDetail } = useMovies();
+  console.log(movieDetail);
 
+  const formatedGens = (gens) => {
+    console.log(gens);
+    const sliceGens = gens?.map((item) => item.name);
+    const newGens = sliceGens
+      ?.slice(1, sliceGens.length - 1)
+      .join(",")
+      .replace(",", "-")
+      .concat("-");
+
+    const firstGen = sliceGens?.slice(0, 1);
+    const lastGen = sliceGens?.slice(sliceGens.length - 1, sliceGens.length);
+
+    return `${firstGen}-${newGens}${lastGen}`;
+  };
+
+  const dateRelease = movieDetail?.release_date?.split("-").slice(0, 1).join();
   if (Object.keys(movieDetail).length === 0) {
     return <p style={{ textAlign: "center" }}>La pagina esta vacia</p>;
   }
+
   return (
     <Box>
-      <ImgBack urlImg={`${URL_IMG + movieDetail?.poster_path}`}>
+      <ImgBack urlImg={`${URL_IMG + movieDetail?.backdrop_path}`}>
         <DisplayBox>
           <Img
             src={`${URL_IMG + movieDetail?.poster_path}`}
             alt={movieDetail?.title}
           />
           <DisplayDetails>
-            <Title>{movieDetail?.original_title}</Title>
+            <Title>
+              {movieDetail?.original_title} ({dateRelease})
+            </Title>
             <BoxDetails>
-              <ItemDetail>{movieDetail?.release_date}</ItemDetail>
-              <ItemDetail>{movieDetail?.runtime}</ItemDetail>
               <ItemDetail>
-                {movieDetail?.genres?.map((item) => (
-                  <p
-                    key={item.id}
-                    style={{ display: "flex", gap: "2rem", margin: "0" }}
-                  >
-                    {item.name}
-                  </p>
-                ))}
+                {formatedGens(movieDetail?.genres)}
+                <ItemDetail>{formatTime(movieDetail?.runtime)}hs</ItemDetail>
               </ItemDetail>
             </BoxDetails>
             <BoxDetails>
               <ItemDetail>{movieDetail?.popularity}</ItemDetail>
               <button>Añadir a favoritos</button>
             </BoxDetails>
+
+            <ItemDetail>{movieDetail?.tagline}</ItemDetail>
+            <p style={{ color: "white" }}>Description</p>
             <ItemDetail>{movieDetail?.overview}</ItemDetail>
             <ItemDetail>{movieDetail?.status}</ItemDetail>
             <h3 style={{ color: "white" }}>Productoras</h3>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CardMovieDetail from "../components/Cards/CardMovieDetail";
 import Nav from "../components/Nav";
 import Footer from "../layout/Footer";
+import { BoxNav } from "./ResultsSearch";
 
 const Box = styled.div`
   display: flex;
@@ -13,10 +14,6 @@ const Box = styled.div`
 
 const BoxFooter = styled.div`
   background-color: #150c22;
-`;
-const BoxNav = styled.div`
-  background-color: #150c22;
-  padding-bottom: 1rem;
 `;
 
 const MovieDetail = () => {

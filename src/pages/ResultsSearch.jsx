@@ -53,7 +53,7 @@ const BoxFooter = styled.div`
   background-color: #150c22;
 `;
 
-const BoxNav = styled.div`
+export const BoxNav = styled.div`
   width: 100%;
   background-color: #150c22;
   padding-bottom: 1rem;
@@ -70,7 +70,11 @@ const ResultsSearch = () => {
   const { moviesSearch } = useMovies();
   const colorResult = true;
 
-  console.log(moviesSearch);
+  // Filtrar por estrellas, hacer funcionabilidad.Ejemplo =>
+  // console.log(
+  //   moviesSearch?.results?.filter((items) => items?.vote_average > 6)
+  // );
+
   if (moviesSearch?.length === 0) {
     return (
       <BoxError>

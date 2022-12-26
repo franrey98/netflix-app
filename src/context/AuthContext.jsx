@@ -5,11 +5,25 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState({});
-
+  console.log(token);
   useEffect(() => {
     requestToken();
-    acceptToken();
   }, []);
+
+  // useEffect(() => {
+  //   const acceptToken = async () => {
+  //     try {
+  //       await fetch(`${URL}/authenticate/${token}`)
+  //         .then((data) => {
+  //           return data.json();
+  //         })
+  //         .then((data) => console.log(data));
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   acceptToken();
+  // }, [token]);
 
   const requestToken = async () => {
     try {
