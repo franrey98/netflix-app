@@ -69,6 +69,7 @@ const Nav = () => {
       <FlexItems>
         <Title to="/">Netflix App</Title>
         <Button to="/BrowseMore">Browse +</Button>
+        <Button to="/favoriteMovies">My Favorites Movies</Button>
       </FlexItems>
       <FlexItems>
         <Title to="/login">Login</Title>

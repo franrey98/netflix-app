@@ -12,20 +12,32 @@ export const MoviesProvider = ({ children }) => {
   const [moviesSearch, setMoviesSearch] = useState([]);
   const [movieDetail, setMovieDetail] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  let tempMoviesFav;
 
   useEffect(() => {
     requestMovies();
     recentlyAdded();
   }, []);
 
+  const storage = localStorage.getItem("favmovie");
+
+  if (storage === null) {
+    tempMoviesFav = [];
+  } else {
+    tempMoviesFav = JSON.parse(storage);
+  }
+
   const requestMovies = async () => {
+    setIsLoading(true);
     try {
       await fetch(`${URL}/3/movie/popular?api_key=${KEY}&language=en-US&page=1`)
         .then((data) => {
           return data.json();
         })
         .then((data) => {
-          setIsLoading(false);
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 1000);
           setPopularMovies(data.results);
         });
     } catch (error) {
@@ -34,6 +46,7 @@ export const MoviesProvider = ({ children }) => {
   };
 
   const recentlyAdded = async () => {
+    setIsLoading(true);
     try {
       await fetch(
         `${URL}/3/movie/upcoming?api_key=${KEY}&language=en-US&page=1`
@@ -42,6 +55,9 @@ export const MoviesProvider = ({ children }) => {
           return data.json();
         })
         .then((data) => {
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 1000);
           setRecentlyAdd(data.results);
         });
     } catch (error) {
@@ -50,12 +66,16 @@ export const MoviesProvider = ({ children }) => {
   };
 
   const searchMovie = async (movie) => {
+    setIsLoading(true);
     try {
       await fetch(`${URL}/3/search/movie?api_key=${KEY}&query=${movie}`)
         .then((data) => {
           return data.json();
         })
         .then((data) => {
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 1000);
           setMoviesSearch(data);
         });
     } catch (error) {
@@ -64,17 +84,26 @@ export const MoviesProvider = ({ children }) => {
   };
 
   const getDetailMovie = async (id) => {
+    setIsLoading(true);
     try {
       await fetch(`${URL}/3/movie/${id}?api_key=${KEY}`)
         .then((data) => {
           return data.json();
         })
         .then((data) => {
+          setTimeout(() => {
+            setIsLoading(false);
+          }, 1000);
           setMovieDetail(data);
         });
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const addFavMovie = (movies) => {
+    tempMoviesFav.push(movies);
+    localStorage.setItem("favmovie", JSON.stringify(tempMoviesFav));
   };
 
   return (
@@ -87,6 +116,8 @@ export const MoviesProvider = ({ children }) => {
         moviesSearch,
         getDetailMovie,
         movieDetail,
+        addFavMovie,
+        tempMoviesFav,
       }}
     >
       {children}

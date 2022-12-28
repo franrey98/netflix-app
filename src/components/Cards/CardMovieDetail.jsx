@@ -13,6 +13,21 @@ const Img = styled.img`
   }
 `;
 
+const Button = styled.button`
+  padding: 10px;
+  border: 1px solid wheat;
+  color: white;
+  background-color: #bbb80e;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+`;
+
+const BoxButton = styled.div`
+  grid-column: 2/3;
+  width: 20rem;
+  padding-right: 1rem;
+`;
 const Box = styled.div`
   width: 100%;
 `;
@@ -25,15 +40,15 @@ const Title = styled.h2`
 const DisplayDetails = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   width: 100%;
 `;
 
 const DisplayBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  gap: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-right: 4rem;
+  justify-items: center;
   padding-top: 7rem;
   @media (min-width: 1180px) {
     flex-direction: row;
@@ -70,26 +85,57 @@ const ImgBack = styled.div`
 `;
 
 const CardMovieDetail = () => {
-  const { movieDetail } = useMovies();
-  console.log(movieDetail);
+  const { movieDetail, isLoading, addFavMovie } = useMovies();
 
   const formatedGens = (gens) => {
-    console.log(gens);
     const sliceGens = gens?.map((item) => item.name);
+
     const newGens = sliceGens
       ?.slice(1, sliceGens.length - 1)
       .join(",")
       .replace(",", "-")
       .concat("-");
-
     const firstGen = sliceGens?.slice(0, 1);
     const lastGen = sliceGens?.slice(sliceGens.length - 1, sliceGens.length);
 
-    return `${firstGen}-${newGens}${lastGen}`;
+    if (gens.length <= 1) {
+      return firstGen;
+    } else {
+      return `${firstGen}-${newGens}${lastGen}`;
+    }
   };
 
+  const handleSubmit = (e) => {
+    const btn = e.currentTarget;
+    const parent = btn.parentElement.parentElement;
+
+    const img = parent.querySelector("#img").getAttribute("src");
+    const title = parent.querySelector("#title").innerText;
+    const releaseDate = parent.querySelector("#release-date").innerText;
+    const popularity = parent.querySelector("#popularity").innerText;
+    const voteAverage = parent.querySelector("#vote-average").innerText;
+    const tagline = parent.querySelector("#tagline").innerText;
+    const overview = parent.querySelector("#overview").innerText;
+    const status = parent.querySelector("#status").innerText;
+    const objFavMovie = {
+      img,
+      title,
+      releaseDate,
+      popularity,
+      voteAverage,
+      tagline,
+      overview,
+      status,
+      id: movieDetail.id,
+    };
+
+    addFavMovie(objFavMovie);
+  };
   const dateRelease = movieDetail?.release_date?.split("-").slice(0, 1).join();
-  if (Object.keys(movieDetail).length === 0) {
+
+  if (isLoading) {
+    return <p>Cargando</p>;
+  } else if (Object.keys(movieDetail).length === 0) {
     return <p style={{ textAlign: "center" }}>La pagina esta vacia</p>;
   }
 
@@ -98,37 +144,50 @@ const CardMovieDetail = () => {
       <ImgBack urlImg={`${URL_IMG + movieDetail?.backdrop_path}`}>
         <DisplayBox>
           <Img
+            id="img"
             src={`${URL_IMG + movieDetail?.poster_path}`}
             alt={movieDetail?.title}
           />
           <DisplayDetails>
-            <Title>
+            <Title id="title">
               {movieDetail?.original_title} ({dateRelease})
             </Title>
             <BoxDetails>
-              <ItemDetail>
-                {formatedGens(movieDetail?.genres)}
-                <ItemDetail>{formatTime(movieDetail?.runtime)}hs</ItemDetail>
+              <ItemDetail id="release-date">
+                <ItemDetail>{movieDetail?.release_date}</ItemDetail>
+                {formatedGens(movieDetail?.genres)} °
+                <ItemDetail id="runtime">
+                  {formatTime(movieDetail?.runtime)}hs
+                </ItemDetail>
               </ItemDetail>
             </BoxDetails>
             <BoxDetails>
-              <ItemDetail>{movieDetail?.popularity}</ItemDetail>
-              <button>Añadir a favoritos</button>
+              <ItemDetail id="popularity">{movieDetail?.popularity}</ItemDetail>
+              {"----"}
+              <ItemDetail id="vote-average">
+                {movieDetail?.vote_average}
+              </ItemDetail>
             </BoxDetails>
-
-            <ItemDetail>{movieDetail?.tagline}</ItemDetail>
+            <ItemDetail id="tagline">{movieDetail?.tagline}</ItemDetail>
             <p style={{ color: "white" }}>Description</p>
-            <ItemDetail>{movieDetail?.overview}</ItemDetail>
-            <ItemDetail>{movieDetail?.status}</ItemDetail>
+            <ItemDetail id="overview">{movieDetail?.overview}</ItemDetail>
+            <ItemDetail id="status">{movieDetail?.status}</ItemDetail>
             <h3 style={{ color: "white" }}>Productoras</h3>
-            <div style={{ display: "flex", gap: "2rem" }}>
+            <div
+              style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}
+            >
               {movieDetail?.production_companies?.map((item) => (
                 <div key={item.id}>
-                  <TitleProduction>{item.name}</TitleProduction>
+                  <TitleProduction id="production-companies">
+                    {item.name}
+                  </TitleProduction>
                 </div>
               ))}
             </div>
           </DisplayDetails>
+          <BoxButton>
+            <Button onClick={handleSubmit}>Agregar a fav</Button>
+          </BoxButton>
         </DisplayBox>
       </ImgBack>
     </Box>

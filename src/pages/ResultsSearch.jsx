@@ -67,7 +67,7 @@ export const BoxError = styled.div`
 `;
 
 const ResultsSearch = () => {
-  const { moviesSearch } = useMovies();
+  const { moviesSearch, isLoading } = useMovies();
   const colorResult = true;
 
   // Filtrar por estrellas, hacer funcionabilidad.Ejemplo =>
@@ -75,19 +75,23 @@ const ResultsSearch = () => {
   //   moviesSearch?.results?.filter((items) => items?.vote_average > 6)
   // );
 
-  if (moviesSearch?.length === 0) {
-    return (
-      <BoxError>
-        <BoxNav>
-          <Nav />
-        </BoxNav>
-        <p>Error en el intento de busqueda</p>
-        <BoxFooter>
-          <Footer color={colorResult} />
-        </BoxFooter>
-      </BoxError>
-    );
+  if (isLoading) {
+    return <p>Cargando</p>;
   }
+
+  // if (moviesSearch?.length === 0) {
+  //   return (
+  //     <BoxError>
+  //       <BoxNav>
+  //         <Nav />
+  //       </BoxNav>
+  //       <p>Error en el intento de busqueda</p>
+  //       <BoxFooter>
+  //         <Footer color={colorResult} />
+  //       </BoxFooter>
+  //     </BoxError>
+  //   );
+  // }
 
   return (
     <>
