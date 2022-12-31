@@ -10,8 +10,9 @@ const Container = styled.div`
   gap: 1.5rem;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 2rem;
   @media (min-width: 768px) {
-    padding: 2rem 5rem 7rem 5rem;
+    padding: 1rem 3rem 4rem 3rem;
   }
 `;
 
@@ -80,9 +81,9 @@ const FormLogin = () => {
               pattern: /\S+@\S+\.\S+/,
             })}
           />
-          {errors.email?.type === "required" && <p>El mail es requerido</p>}
+          {errors.email?.type === "required" && <p>The field is required</p>}
           {errors.email?.type === "pattern" && (
-            <p>El formato del email es incorrecto</p>
+            <p>The email format is incorrect</p>
           )}
         </ContainerInput>
         <ContainerInput>
@@ -95,9 +96,7 @@ const FormLogin = () => {
               maxLength: 15,
             })}
           />
-          {errors.password?.type === "required" && (
-            <p>La contraseña es requerida</p>
-          )}
+          {errors.password?.type === "required" && <p>The field is required</p>}
           {errors.password?.type === "minLength" && (
             <p>La contraseña es muy corta</p>
           )}

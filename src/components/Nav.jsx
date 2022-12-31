@@ -9,7 +9,7 @@ const Container = styled.div`
   justify-content: space-around;
   align-items: center;
   padding-top: 2rem;
-  padding-bottom: 0rem;
+  padding-bottom: 1rem;
   padding-top: 2rem;
   gap: 1rem;
   @media (min-width: 768px) {

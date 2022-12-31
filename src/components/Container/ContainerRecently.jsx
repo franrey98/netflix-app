@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useMovies } from "../../hooks/useMovies";
+import Spinner from "../../utils/Spinner";
 import CarrouselRecently from "../Carrousel/CarrouselRecently";
 
 const Box = styled.div``;
@@ -10,8 +11,8 @@ const ContainerRecently = () => {
 
   if (isLoading)
     return (
-      <div>
-        <h1>El usuario se esta logueando, aguarde unos segundos</h1>
+      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <Spinner />
       </div>
     );
 

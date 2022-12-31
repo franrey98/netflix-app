@@ -11,7 +11,9 @@ const ImgBg = styled.div`
   background-size: cover;
   background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.55)),
     url(${img});
+  background-position: center;
   @media (min-width: 768px) {
+    background-position: top;
     height: 40rem;
   }
 `;

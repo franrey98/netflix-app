@@ -3,12 +3,14 @@ import styled from "styled-components";
 import { URL_IMG } from "../../context/MoviesContext";
 import { useMovies } from "../../hooks/useMovies";
 import { formatTime } from "../../utils/arrows.js";
+import Spinner from "../../utils/Spinner";
 
 const Img = styled.img`
   object-fit: contain;
   height: 450px;
   width: 18rem;
-  @media (min-width: 800px) {
+  padding-left: 0;
+  @media (min-width: 1180px) {
     padding-left: 10rem;
   }
 `;
@@ -45,13 +47,19 @@ const DisplayDetails = styled.div`
 `;
 
 const DisplayBox = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding-right: 4rem;
-  justify-items: center;
-  padding-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: space-evenly;
+  padding-right: 2rem;
+  padding-left: 2rem;
   @media (min-width: 1180px) {
+    display: grid;
+    justify-items: center;
     flex-direction: row;
+    padding-right: 4rem;
+    grid-template-columns: 1fr 1fr;
   }
 `;
 
@@ -63,6 +71,7 @@ const ItemDetail = styled.div`
   color: white;
   display: flex;
   gap: 5px;
+  font-size: 18px;
 `;
 
 const TitleProduction = styled.p`
@@ -72,7 +81,7 @@ const TitleProduction = styled.p`
 
 const ImgBack = styled.div`
   object-fit: contain;
-  height: 1100px;
+  height: 1400px;
   width: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.65)),
     url(${(props) => props.urlImg});
@@ -134,9 +143,17 @@ const CardMovieDetail = () => {
   const dateRelease = movieDetail?.release_date?.split("-").slice(0, 1).join();
 
   if (isLoading) {
-    return <p>Cargando</p>;
+    return (
+      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <Spinner />
+      </div>
+    );
   } else if (Object.keys(movieDetail).length === 0) {
-    return <p style={{ textAlign: "center" }}>La pagina esta vacia</p>;
+    return (
+      <p style={{ textAlign: "center" }}>
+        Error on the page, please go back to the beginning
+      </p>
+    );
   }
 
   return (
@@ -169,13 +186,18 @@ const CardMovieDetail = () => {
               </ItemDetail>
             </BoxDetails>
             <ItemDetail id="tagline">{movieDetail?.tagline}</ItemDetail>
-            <p style={{ color: "white" }}>Description</p>
+            <p style={{ color: "white", fontSize: "24px" }}>Description</p>
             <ItemDetail id="overview">{movieDetail?.overview}</ItemDetail>
             <ItemDetail id="status">{movieDetail?.status}</ItemDetail>
-            <h3 style={{ color: "white" }}>Productoras</h3>
+            <h3 style={{ color: "white", fontSize: "24px" }}>Producers</h3>
             <div
               style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}
             >
+              {movieDetail?.production_companies?.length === 0 && (
+                <p style={{ color: "white", fontSize: "18px" }}>
+                  Not producers found
+                </p>
+              )}
               {movieDetail?.production_companies?.map((item) => (
                 <div key={item.id}>
                   <TitleProduction id="production-companies">
@@ -186,7 +208,7 @@ const CardMovieDetail = () => {
             </div>
           </DisplayDetails>
           <BoxButton>
-            <Button onClick={handleSubmit}>Agregar a fav</Button>
+            <Button onClick={handleSubmit}>Add to favorites</Button>
           </BoxButton>
         </DisplayBox>
       </ImgBack>
