@@ -4,15 +4,16 @@ import { useMovies } from "../hooks/useMovies";
 import Footer from "../layout/Footer";
 import styled from "styled-components";
 import Nav from "../components/Nav";
+import Spinner from "../utils/Spinner";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   gap: 2rem;
-  padding: 4rem 6rem 0rem 6rem;
-  @media (min-width: 768px) {
-    flex-direction: row;
+  padding: 4rem 2rem 2rem 2rem;
+  @media (min-width: 1000px) {
+    padding: 4rem 18rem 2rem 18rem;
   }
 `;
 
@@ -22,7 +23,8 @@ const Box = styled.div`
   max-height: 250px;
   width: 100%;
   @media (min-width: 768px) {
-    width: 25rem;
+    width: 20rem;
+    margin: 0 auto;
   }
 `;
 const BoxCard = styled.div`
@@ -48,8 +50,6 @@ const TextError = styled.h3`
 
 const BoxFooter = styled.div`
   width: 100%;
-  margin-top: 2rem;
-  padding-top: 1px;
   background-color: #150c22;
 `;
 
@@ -76,22 +76,32 @@ const ResultsSearch = () => {
   // );
 
   if (isLoading) {
-    return <p>Cargando</p>;
+    return (
+      <BoxError>
+        <BoxNav>
+          <Nav />
+        </BoxNav>
+        <Spinner />
+        <BoxFooter>
+          <Footer color={colorResult} />
+        </BoxFooter>
+      </BoxError>
+    );
   }
 
-  // if (moviesSearch?.length === 0) {
-  //   return (
-  //     <BoxError>
-  //       <BoxNav>
-  //         <Nav />
-  //       </BoxNav>
-  //       <p>Error en el intento de busqueda</p>
-  //       <BoxFooter>
-  //         <Footer color={colorResult} />
-  //       </BoxFooter>
-  //     </BoxError>
-  //   );
-  // }
+  if (moviesSearch?.length === 0) {
+    return (
+      <BoxError>
+        <BoxNav>
+          <Nav />
+        </BoxNav>
+        <p>Error on the page, please go back to the beginning</p>
+        <BoxFooter>
+          <Footer color={colorResult} />
+        </BoxFooter>
+      </BoxError>
+    );
+  }
 
   return (
     <>
@@ -100,7 +110,7 @@ const ResultsSearch = () => {
       </BoxNav>
       <Container>
         <Box>
-          <Text>Result of the search</Text>
+          <Text>Search results</Text>
           <TextLength>{moviesSearch?.results?.length}</TextLength>
         </Box>
         {moviesSearch?.results?.length === 0 && (
@@ -112,9 +122,6 @@ const ResultsSearch = () => {
           ))}
         </BoxCard>
       </Container>
-      <BoxFooter>
-        <Footer color={colorResult} />
-      </BoxFooter>
     </>
   );
 };

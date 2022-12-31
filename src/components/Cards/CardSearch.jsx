@@ -57,7 +57,7 @@ const CardSearch = ({ movie }) => {
 
   const { getDetailMovie } = useMovies();
 
-  let lengthOverview = movie?.overview.substring(0, 140);
+  let lengthOverview = movie?.overview.substring(0, 220);
 
   const handleSubmit = (id) => {
     getDetailMovie(id);
@@ -76,7 +76,7 @@ const CardSearch = ({ movie }) => {
           <Title>{movie?.title}</Title>
           <p>{movie?.release_date}</p>
           <Text>
-            {movie?.overview.length >= 140
+            {movie?.overview.length >= 220
               ? lengthOverview + "..."
               : movie?.overview}
           </Text>

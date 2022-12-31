@@ -76,6 +76,10 @@ const ImgBg = styled.div`
   height: 45rem;
   background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
     url(${img});
+  background-position: center;
+  @media (min-width: 768px) {
+    background-position: top;
+  }
 `;
 
 const Navbar = () => {

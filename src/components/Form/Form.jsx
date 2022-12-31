@@ -100,7 +100,7 @@ const Form = () => {
               })}
             />
             {errors.username?.type === "required" && (
-              <p>El campo es requerido</p>
+              <p>The field is required</p>
             )}
           </div>
           <div style={{ width: "100%" }}>
@@ -113,7 +113,7 @@ const Form = () => {
               })}
             />
             {errors.lastname?.type === "required" && (
-              <p>El campo es requerido</p>
+              <p>The field is required</p>
             )}
           </div>
         </StyleName>
@@ -126,9 +126,9 @@ const Form = () => {
               pattern: /\S+@\S+\.\S+/,
             })}
           />
-          {errors.email?.type === "required" && <p>El mail es requerido</p>}
+          {errors.email?.type === "required" && <p>The field is required</p>}
           {errors.email?.type === "pattern" && (
-            <p>El formato del email es incorrecto</p>
+            <p>The email format is incorrect</p>
           )}
         </ContainerInput>
         <ContainerInput>
@@ -141,14 +141,12 @@ const Form = () => {
               maxLength: 15,
             })}
           />
-          {errors.password?.type === "required" && (
-            <p>La contraseña es requerida</p>
-          )}
+          {errors.password?.type === "required" && <p>The field is required</p>}
           {errors.password?.type === "minLength" && (
-            <p>La contraseña es muy corta</p>
+            <p>The password is too short</p>
           )}
           {errors.password?.type === "maxLength" && (
-            <p>La contraseña es muy larga</p>
+            <p>The password is too long</p>
           )}
         </ContainerInput>
         <BoxFlex>

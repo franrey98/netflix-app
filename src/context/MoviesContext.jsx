@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export const URL = process.env.REACT_APP_API_ROUTE;
 export const KEY = process.env.REACT_APP_API_KEY;
@@ -37,7 +38,7 @@ export const MoviesProvider = ({ children }) => {
         .then((data) => {
           setTimeout(() => {
             setIsLoading(false);
-          }, 1000);
+          }, 2000);
           setPopularMovies(data.results);
         });
     } catch (error) {
@@ -57,7 +58,7 @@ export const MoviesProvider = ({ children }) => {
         .then((data) => {
           setTimeout(() => {
             setIsLoading(false);
-          }, 1000);
+          }, 2000);
           setRecentlyAdd(data.results);
         });
     } catch (error) {
@@ -75,7 +76,7 @@ export const MoviesProvider = ({ children }) => {
         .then((data) => {
           setTimeout(() => {
             setIsLoading(false);
-          }, 1000);
+          }, 2000);
           setMoviesSearch(data);
         });
     } catch (error) {
@@ -93,7 +94,7 @@ export const MoviesProvider = ({ children }) => {
         .then((data) => {
           setTimeout(() => {
             setIsLoading(false);
-          }, 1000);
+          }, 2000);
           setMovieDetail(data);
         });
     } catch (error) {
@@ -102,8 +103,17 @@ export const MoviesProvider = ({ children }) => {
   };
 
   const addFavMovie = (movies) => {
-    tempMoviesFav.push(movies);
-    localStorage.setItem("favmovie", JSON.stringify(tempMoviesFav));
+    let findMovie = tempMoviesFav.find((movie) => {
+      return movies.id === movie.id;
+    });
+
+    if (!findMovie) {
+      tempMoviesFav.push(movies);
+      localStorage.setItem("favmovie", JSON.stringify(tempMoviesFav));
+      Swal.fire({
+        title: "This movie was added to favorites",
+      });
+    }
   };
 
   return (

@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const Box = styled.div`
   width: 100%;
-  margin-top: 3rem;
   padding-bottom: 2rem;
 `;
 
@@ -13,7 +12,7 @@ const Container = styled.div`
   padding-left: 0rem;
   padding-right: 0rem;
   align-items: center;
-
+  padding-top: 3rem;
   @media (min-width: 768px) {
     display: flex;
     flex-direction: row;

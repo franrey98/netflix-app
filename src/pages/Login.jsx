@@ -28,7 +28,7 @@ const BoxFooter = styled.div`
   bottom: 0;
   width: 100%;
   @media (min-width: 768px) {
-    position: fixed;
+    position: absolute;
   }
 `;
 
