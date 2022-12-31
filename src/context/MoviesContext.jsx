@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export const URL = process.env.REACT_APP_API_ROUTE;
 export const KEY = process.env.REACT_APP_API_KEY;
@@ -109,6 +110,9 @@ export const MoviesProvider = ({ children }) => {
     if (!findMovie) {
       tempMoviesFav.push(movies);
       localStorage.setItem("favmovie", JSON.stringify(tempMoviesFav));
+      Swal.fire({
+        title: "This movie was added to favorites",
+      });
     }
   };
 

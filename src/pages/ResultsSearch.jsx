@@ -110,7 +110,7 @@ const ResultsSearch = () => {
       </BoxNav>
       <Container>
         <Box>
-          <Text>Result of the search</Text>
+          <Text>Search results</Text>
           <TextLength>{moviesSearch?.results?.length}</TextLength>
         </Box>
         {moviesSearch?.results?.length === 0 && (

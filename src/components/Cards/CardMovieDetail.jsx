@@ -68,7 +68,16 @@ const BoxDetails = styled.div`
   width: 100%;
 `;
 const ItemDetail = styled.div`
-  color: white;
+  color: #ffffff9d;
+  display: flex;
+  gap: 5px;
+  font-size: 18px;
+`;
+export const ItemDetailPercentage = styled.div`
+  color: #ffffff9d;
+  background-color: #31a557;
+  border-radius: 5px;
+  padding: 5px;
   display: flex;
   gap: 5px;
   font-size: 18px;
@@ -76,12 +85,12 @@ const ItemDetail = styled.div`
 
 const TitleProduction = styled.p`
   font-size: 20px;
-  color: white;
+  color: #ffffff9d;
 `;
 
 const ImgBack = styled.div`
   object-fit: contain;
-  height: 1400px;
+  height: 1500px;
   width: 100%;
   background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.65)),
     url(${(props) => props.urlImg});
@@ -114,6 +123,10 @@ const CardMovieDetail = () => {
     }
   };
 
+  const scorePercentage = (puntuacion, max = 10) => {
+    return ((puntuacion / max) * 100).toFixed(2) + "%";
+  };
+
   const handleSubmit = (e) => {
     const btn = e.currentTarget;
     const parent = btn.parentElement.parentElement;
@@ -121,7 +134,6 @@ const CardMovieDetail = () => {
     const img = parent.querySelector("#img").getAttribute("src");
     const title = parent.querySelector("#title").innerText;
     const releaseDate = parent.querySelector("#release-date").innerText;
-    const popularity = parent.querySelector("#popularity").innerText;
     const voteAverage = parent.querySelector("#vote-average").innerText;
     const tagline = parent.querySelector("#tagline").innerText;
     const overview = parent.querySelector("#overview").innerText;
@@ -130,7 +142,6 @@ const CardMovieDetail = () => {
       img,
       title,
       releaseDate,
-      popularity,
       voteAverage,
       tagline,
       overview,
@@ -156,6 +167,8 @@ const CardMovieDetail = () => {
     );
   }
 
+  /*Formatear color de puntuacion dependiendo de la misma, +70 verde, +50,amarillo, - rojo*/
+
   return (
     <Box>
       <ImgBack urlImg={`${URL_IMG + movieDetail?.backdrop_path}`}>
@@ -171,27 +184,38 @@ const CardMovieDetail = () => {
             </Title>
             <BoxDetails>
               <ItemDetail id="release-date">
-                <ItemDetail>{movieDetail?.release_date}</ItemDetail>
-                {formatedGens(movieDetail?.genres)} °
+                <ItemDetail>{movieDetail?.release_date} |</ItemDetail>
+                {formatedGens(movieDetail?.genres)} |
                 <ItemDetail id="runtime">
                   {formatTime(movieDetail?.runtime)}hs
                 </ItemDetail>
               </ItemDetail>
             </BoxDetails>
+            <p style={{ color: "white", fontSize: "24px", fontWeight: "500" }}>
+              Calification
+            </p>
             <BoxDetails>
-              <ItemDetail id="popularity">{movieDetail?.popularity}</ItemDetail>
-              {"----"}
-              <ItemDetail id="vote-average">
-                {movieDetail?.vote_average}
-              </ItemDetail>
+              <ItemDetailPercentage id="vote-average">
+                {scorePercentage(movieDetail?.vote_average)}
+              </ItemDetailPercentage>
             </BoxDetails>
-            <ItemDetail id="tagline">{movieDetail?.tagline}</ItemDetail>
-            <p style={{ color: "white", fontSize: "24px" }}>Description</p>
+            <p style={{ color: "white", fontSize: "24px", fontWeight: "500" }}>
+              Description
+            </p>
+            <ItemDetail style={{ marginBottom: "5px" }} id="tagline">
+              {movieDetail?.tagline}
+            </ItemDetail>
             <ItemDetail id="overview">{movieDetail?.overview}</ItemDetail>
             <ItemDetail id="status">{movieDetail?.status}</ItemDetail>
-            <h3 style={{ color: "white", fontSize: "24px" }}>Producers</h3>
+            <h3 style={{ color: "white", fontSize: "24px", fontWeight: "500" }}>
+              Producers
+            </h3>
             <div
-              style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                gap: "1rem",
+              }}
             >
               {movieDetail?.production_companies?.length === 0 && (
                 <p style={{ color: "white", fontSize: "18px" }}>

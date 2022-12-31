@@ -9,7 +9,7 @@ const BoxNav = styled.div`
   background-color: black;
 `;
 const Container = styled.div`
-  padding: 2rem 6rem 1rem 6rem;
+  padding: 2rem 3rem 1rem 3rem;
 `;
 
 const BoxCard = styled.div`
@@ -46,10 +46,6 @@ const FavoritesMovies = () => {
     );
   }
 
-  if (favMovieList === null) {
-    return <p>No hay peliculas favoritas</p>;
-  }
-
   return (
     <div>
       <BoxNav>
@@ -59,7 +55,10 @@ const FavoritesMovies = () => {
 
       <Container>
         <BoxCard>
-          {favMovieList.map((items) => (
+          {favMovieList === null && (
+            <p style={{ textAlign: "center" }}>No favorite movies</p>
+          )}
+          {favMovieList?.map((items) => (
             <div key={items?.id}>
               <CardFavoriteMovie movie={items} />
             </div>

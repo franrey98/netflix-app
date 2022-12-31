@@ -64,7 +64,6 @@ const FormLogin = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     reset();
   };
 

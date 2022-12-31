@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { ItemDetailPercentage } from "./CardMovieDetail";
 
 const Container = styled.div``;
 const DisplayBox = styled.div`
@@ -43,25 +44,44 @@ const Title = styled.h2`
 const ItemDetail = styled.p`
   color: black;
   margin: 0;
-  margin-top: 25px;
+  margin-top: 10px;
   gap: 5px;
 `;
 
 const CardFavoriteMovie = ({ movie }) => {
-  console.log(movie);
   return (
     <Container>
       <DisplayBox>
         <Img src={movie?.img} alt={movie?.title} />
         <Box>
-          <div style={{ padding: "0 10px 0 10px" }}>
+          <div style={{ padding: "0 10px 10px 10px" }}>
             <Title>{movie?.title}</Title>
             <ItemDetail>{movie?.releaseDate}</ItemDetail>
-            <ItemDetail>{movie?.status}</ItemDetail>
-            <div style={{ display: "flex", gap: "1rem" }}>
-              <ItemDetail>{movie?.popularity}</ItemDetail>
-              <ItemDetail>{movie?.voteAverage}</ItemDetail>
+            <h3
+              style={{
+                color: "black",
+                fontSize: "24px",
+                fontWeight: "500",
+                marginTop: "10px",
+                margin: "0",
+              }}
+            >
+              Calification
+            </h3>
+            <div style={{ width: "4.4rem", marginTop: "7px" }}>
+              <ItemDetailPercentage>{movie?.voteAverage}</ItemDetailPercentage>
             </div>
+            <p
+              style={{
+                color: "black",
+                fontSize: "24px",
+                fontWeight: "500",
+                marginTop: "10px",
+                margin: "0",
+              }}
+            >
+              Description
+            </p>
             <ItemDetail>{movie?.tagline}</ItemDetail>
             <ItemDetail>{movie?.overview}</ItemDetail>
             {/*Poner calificacion por estrellas y desp hacer un filtro del mismo*/}
