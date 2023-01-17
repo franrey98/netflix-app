@@ -19,3 +19,7 @@ _1 - You will have to create a .env in **Front**  folders_
 _2 - Install the dependencies with **`npm install`** at Front folders_
 
 _3 - Run the server with  **`npm start`**
+
+Website: https://netflix-app-eta.vercel.app/
+
+My linkedin: https://www.linkedin.com/in/francisco-rey-71060419a/
