@@ -1,12 +1,8 @@
 import React from "react";
-import styled from "styled-components";
 import { useMovies } from "../../hooks/useMovies.jsx";
 import Spinner from "../../utils/Spinner.jsx";
-import CarrouselPopular from "../Carrousel/CarrouselPopular.jsx";
 
-const Box = styled.div``;
-
-const ContainerPopularMovies = () => {
+const Container = ({ children }) => {
   const { isLoading } = useMovies();
 
   if (isLoading)
@@ -15,11 +11,7 @@ const ContainerPopularMovies = () => {
         <Spinner />
       </div>
     );
-  return (
-    <Box>
-      <CarrouselPopular />
-    </Box>
-  );
+  return <div>{children}</div>;
 };
 
-export default ContainerPopularMovies;
+export default Container;

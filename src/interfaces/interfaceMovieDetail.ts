@@ -49,25 +49,35 @@ export interface MoviesSearch {
   total_pages: number;
   total_results: number;
 }
+export interface MovieAddFavorite {
+  id: number;
+  img: string;
+  overview: string;
+  releaseDate: string;
+  status: string;
+  tagline: string;
+  title: string;
+  voteAverage: string;
+}
 
-export interface Genre {
+interface Genre {
   id: number;
   name: string;
 }
 
-export interface ProductionCompany {
+interface ProductionCompany {
   id: number;
   logo_path: null | string;
   name: string;
   origin_country: string;
 }
 
-export interface ProductionCountry {
+interface ProductionCountry {
   iso_3166_1: string;
   name: string;
 }
 
-export interface SpokenLanguage {
+interface SpokenLanguage {
   english_name: string;
   iso_639_1: string;
   name: string;

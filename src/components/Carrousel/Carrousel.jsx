@@ -1,15 +1,9 @@
 import React from "react";
 import Slider from "react-slick";
-import styled from "styled-components";
-import { useMovies } from "../../hooks/useMovies";
-import CardPopularMovies from "../Cards/CardPopularMovies";
 import { SlickArrowLeft, SlickArrowRight } from "../../utils/arrows";
+import CardMovies from "../Cards/CardMovies";
 
-const Box = styled.div``;
-
-const CarrouselPopular = () => {
-  const { popularMovies } = useMovies();
-
+const Carrousel = ({ items }) => {
   const settings = {
     className: "center",
     centerMode: true,
@@ -26,12 +20,12 @@ const CarrouselPopular = () => {
   return (
     <>
       <Slider {...settings}>
-        {popularMovies?.map((item) => (
-          <CardPopularMovies item={item} key={item.id} />
+        {items?.map((item) => (
+          <CardMovies item={item} key={item.id} />
         ))}
       </Slider>
     </>
   );
 };
 
-export default CarrouselPopular;
+export default Carrousel;

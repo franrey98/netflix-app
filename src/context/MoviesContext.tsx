@@ -1,7 +1,12 @@
 import { createContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import React from "react";
-import { Movie, MoviesSearch } from "../interfaces/interfaceMovieDetail";
+import {
+  Movie,
+  MovieAddFavorite,
+  MovieDBNowPlaying,
+  MoviesSearch,
+} from "../interfaces/interfaceMovieDetail";
 
 export const URL = process.env.REACT_APP_API_ROUTE;
 export const KEY = process.env.REACT_APP_API_KEY;
@@ -17,11 +22,13 @@ export const MoviesProvider: React.FC<Props> = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
   const [recentlyAdd, setRecentlyAdd] = useState<Movie[]>([]);
   const [moviesSearch, setMoviesSearch] = useState<MoviesSearch[]>([]);
-  const [movieDetail, setMovieDetail] = useState({});
+  const [movieDetail, setMovieDetail] = useState<MovieDBNowPlaying | null>(
+    null
+  );
   const [isLoading, setIsLoading] = useState<Boolean>(true);
-  let tempMoviesFav;
-  console.log(movieDetail);
 
+  let tempMoviesFav;
+  console.log(tempMoviesFav);
   useEffect(() => {
     requestMovies();
     recentlyAdded();
@@ -73,7 +80,7 @@ export const MoviesProvider: React.FC<Props> = ({ children }) => {
     }
   };
 
-  const searchMovie = async (movie) => {
+  const searchMovie = async (movie: string) => {
     setIsLoading(true);
     try {
       await fetch(`${URL}/3/search/movie?api_key=${KEY}&query=${movie}`)
@@ -91,7 +98,7 @@ export const MoviesProvider: React.FC<Props> = ({ children }) => {
     }
   };
 
-  const getDetailMovie = async (id) => {
+  const getDetailMovie = async (id: number) => {
     console.log(id);
     setIsLoading(true);
     try {
@@ -110,8 +117,8 @@ export const MoviesProvider: React.FC<Props> = ({ children }) => {
     }
   };
 
-  const addFavMovie = (movies) => {
-    let findMovie = tempMoviesFav.find((movie) => {
+  const addFavMovie = (movies: MovieAddFavorite) => {
+    let findMovie = tempMoviesFav.find((movie: MovieAddFavorite) => {
       return movies.id === movie.id;
     });
 
