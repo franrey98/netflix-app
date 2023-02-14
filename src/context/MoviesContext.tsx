@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import React from "react";
+import { Movie, MoviesSearch } from "../interfaces/interfaceMovieDetail";
 
 export const URL = process.env.REACT_APP_API_ROUTE;
 export const KEY = process.env.REACT_APP_API_KEY;
@@ -7,13 +9,18 @@ export const URL_IMG = process.env.REACT_APP_IMAGE_ROUTE;
 
 export const MoviesContext = createContext({});
 
-export const MoviesProvider = ({ children }) => {
-  const [popularMovies, setPopularMovies] = useState([]);
-  const [recentlyAdd, setRecentlyAdd] = useState([]);
-  const [moviesSearch, setMoviesSearch] = useState([]);
+interface Props {
+  children: React.ReactNode;
+}
+
+export const MoviesProvider: React.FC<Props> = ({ children }) => {
+  const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
+  const [recentlyAdd, setRecentlyAdd] = useState<Movie[]>([]);
+  const [moviesSearch, setMoviesSearch] = useState<MoviesSearch[]>([]);
   const [movieDetail, setMovieDetail] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<Boolean>(true);
   let tempMoviesFav;
+  console.log(movieDetail);
 
   useEffect(() => {
     requestMovies();
@@ -85,6 +92,7 @@ export const MoviesProvider = ({ children }) => {
   };
 
   const getDetailMovie = async (id) => {
+    console.log(id);
     setIsLoading(true);
     try {
       await fetch(`${URL}/3/movie/${id}?api_key=${KEY}`)
