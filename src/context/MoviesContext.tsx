@@ -27,8 +27,8 @@ export const MoviesProvider: React.FC<Props> = ({ children }) => {
   );
   const [isLoading, setIsLoading] = useState<Boolean>(true);
 
-  let tempMoviesFav;
-  console.log(tempMoviesFav);
+  let tempMoviesFav: MovieAddFavorite[];
+
   useEffect(() => {
     requestMovies();
     recentlyAdded();
