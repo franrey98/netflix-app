@@ -12,11 +12,23 @@ export const URL = process.env.REACT_APP_API_ROUTE;
 export const KEY = process.env.REACT_APP_API_KEY;
 export const URL_IMG = process.env.REACT_APP_IMAGE_ROUTE;
 
-export const MoviesContext = createContext({});
-
 interface Props {
   children: React.ReactNode;
 }
+
+interface MoviesContextState {
+  searchMovie: (movie: string) => void;
+  popularMovies: any;
+  recentlyAdd: any;
+  isLoading: boolean;
+  moviesSearch: any;
+  getDetailMovie: any;
+  movieDetail: any;
+  addFavMovie: any;
+  tempMoviesFav: any;
+}
+
+export const MoviesContext = createContext<MoviesContextState | null>(null);
 
 export const MoviesProvider: React.FC<Props> = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
@@ -25,7 +37,7 @@ export const MoviesProvider: React.FC<Props> = ({ children }) => {
   const [movieDetail, setMovieDetail] = useState<MovieDBNowPlaying | null>(
     null
   );
-  const [isLoading, setIsLoading] = useState<Boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   let tempMoviesFav: MovieAddFavorite[];
 

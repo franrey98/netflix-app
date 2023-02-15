@@ -25,7 +25,7 @@ const Layout = () => {
         <Home />
       </Width>
       <CreateAccount />
-      <Footer />
+      <Footer color={false} />
     </Container>
   );
 };
