@@ -2,7 +2,6 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
 
 const Container = styled.div`
   color: white;
@@ -64,8 +63,6 @@ const ButtonLink = styled(Link)`
 `;
 
 const Form = () => {
-  const { createSession, token } = useAuth();
-
   const {
     register,
     handleSubmit,
@@ -78,10 +75,8 @@ const Form = () => {
     const values = {
       password,
       username,
-      request_token: token,
     };
 
-    createSession(values);
     reset();
   };
 
