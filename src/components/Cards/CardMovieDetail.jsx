@@ -152,14 +152,14 @@ const CardMovieDetail = () => {
     addFavMovie(objFavMovie);
   };
   const dateRelease = movieDetail?.release_date?.split("-").slice(0, 1).join();
-
+  console.log(movieDetail);
   if (isLoading) {
     return (
       <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <Spinner />
       </div>
     );
-  } else if (Object.keys(movieDetail).length === 0) {
+  } else if (movieDetail === null) {
     return (
       <p style={{ textAlign: "center" }}>
         Error on the page, please go back to the beginning

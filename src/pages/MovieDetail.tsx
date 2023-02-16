@@ -17,8 +17,6 @@ const BoxFooter = styled.div`
 `;
 
 const MovieDetail = () => {
-  const colorResult = true;
-
   return (
     <Box>
       <BoxNav>
@@ -26,7 +24,7 @@ const MovieDetail = () => {
       </BoxNav>
       <CardMovieDetail />
       <BoxFooter>
-        <Footer color={colorResult} />
+        <Footer color />
       </BoxFooter>
     </Box>
   );

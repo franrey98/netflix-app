@@ -1,19 +1,45 @@
 import { createContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import React from "react";
+import {
+  Movie,
+  MovieAddFavorite,
+  MovieDBNowPlaying,
+  MoviesSearch,
+} from "../interfaces/interfaceMovieDetail";
 
 export const URL = process.env.REACT_APP_API_ROUTE;
 export const KEY = process.env.REACT_APP_API_KEY;
 export const URL_IMG = process.env.REACT_APP_IMAGE_ROUTE;
 
-export const MoviesContext = createContext({});
+interface Props {
+  children: React.ReactNode;
+}
 
-export const MoviesProvider = ({ children }) => {
-  const [popularMovies, setPopularMovies] = useState([]);
-  const [recentlyAdd, setRecentlyAdd] = useState([]);
-  const [moviesSearch, setMoviesSearch] = useState([]);
-  const [movieDetail, setMovieDetail] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  let tempMoviesFav;
+interface MoviesContextState {
+  searchMovie: (movie: string) => void;
+  popularMovies: Movie[];
+  recentlyAdd: Movie[];
+  isLoading: boolean;
+  moviesSearch: MoviesSearch;
+  movieDetail: MovieDBNowPlaying | null;
+  getDetailMovie: any;
+  addFavMovie: any;
+  tempMoviesFav: MovieAddFavorite[];
+}
+
+export const MoviesContext = createContext<MoviesContextState | null>(null);
+
+export const MoviesProvider: React.FC<Props> = ({ children }) => {
+  const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
+  const [recentlyAdd, setRecentlyAdd] = useState<Movie[]>([]);
+  const [moviesSearch, setMoviesSearch] = useState<MoviesSearch | null>(null);
+  const [movieDetail, setMovieDetail] = useState<MovieDBNowPlaying | null>(
+    null
+  );
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  let tempMoviesFav: MovieAddFavorite[];
 
   useEffect(() => {
     requestMovies();
@@ -66,7 +92,7 @@ export const MoviesProvider = ({ children }) => {
     }
   };
 
-  const searchMovie = async (movie) => {
+  const searchMovie = async (movie: string) => {
     setIsLoading(true);
     try {
       await fetch(`${URL}/3/search/movie?api_key=${KEY}&query=${movie}`)
@@ -78,13 +104,15 @@ export const MoviesProvider = ({ children }) => {
             setIsLoading(false);
           }, 2000);
           setMoviesSearch(data);
+          console.log(data);
         });
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getDetailMovie = async (id) => {
+  const getDetailMovie = async (id: number) => {
+    console.log(id);
     setIsLoading(true);
     try {
       await fetch(`${URL}/3/movie/${id}?api_key=${KEY}`)
@@ -102,8 +130,8 @@ export const MoviesProvider = ({ children }) => {
     }
   };
 
-  const addFavMovie = (movies) => {
-    let findMovie = tempMoviesFav.find((movie) => {
+  const addFavMovie = (movies: MovieAddFavorite) => {
+    let findMovie = tempMoviesFav.find((movie: MovieAddFavorite) => {
       return movies.id === movie.id;
     });
 

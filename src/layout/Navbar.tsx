@@ -89,6 +89,7 @@ const Navbar = () => {
 
   const [movie, setMovie] = useState("");
   const [error, setError] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (movie === "") {

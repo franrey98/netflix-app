@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const BrowseMore = () => {
   return (
-    <div>
+    <>
       <div
         style={{
           paddingTop: "2rem",
@@ -27,7 +27,7 @@ const BrowseMore = () => {
       >
         Page in progress
       </div>
-    </div>
+    </>
   );
 };
 

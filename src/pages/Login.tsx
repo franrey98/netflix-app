@@ -40,7 +40,7 @@ const Login = () => {
         <FormLogin />
       </Container>
       <BoxFooter>
-        <Footer />
+        <Footer color={false} />
       </BoxFooter>
     </ImgBg>
   );

@@ -11,7 +11,11 @@ const Text = styled.p`
   text-align: center;
 `;
 
-const Errors = ({ children }) => {
+interface Props {
+  children: React.ReactNode;
+}
+
+const Errors = ({ children }: Props) => {
   return (
     <Box>
       <Text>{children}</Text>

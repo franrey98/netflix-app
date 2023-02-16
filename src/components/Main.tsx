@@ -4,8 +4,8 @@ import { SlFire } from "react-icons/sl";
 import { RiStackLine } from "react-icons/ri";
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import ContainerRecently from "./Container/ContainerRecently";
-import ContainerPopularMovies from "./Container/ContainerPopularMovies";
+import { useMovies } from "../hooks/useMovies";
+import Carrousel from "./Carrousel/Carrousel";
 
 const Container = styled.div`
   padding-left: 10rem;
@@ -45,6 +45,7 @@ const ViewAll = styled(Link)`
 `;
 
 const Main = () => {
+  const { popularMovies, recentlyAdd } = useMovies();
   return (
     <div style={{ width: "100%" }}>
       <Container>
@@ -60,7 +61,9 @@ const Main = () => {
             </ViewAll>
           </FlexIcon>
         </StyleMain>
-        <ContainerPopularMovies />
+        <Container>
+          <Carrousel items={popularMovies} />
+        </Container>
         <StyleMain>
           <FlexIcon>
             <RiStackLine className="icon-main" />
@@ -72,7 +75,9 @@ const Main = () => {
             </ViewAll>
           </FlexIcon>
         </StyleMain>
-        <ContainerRecently />
+        <Container>
+          <Carrousel items={recentlyAdd} />
+        </Container>
       </Container>
     </div>
   );
