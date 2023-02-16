@@ -18,14 +18,14 @@ interface Props {
 
 interface MoviesContextState {
   searchMovie: (movie: string) => void;
-  popularMovies: any;
-  recentlyAdd: any;
+  popularMovies: Movie[];
+  recentlyAdd: Movie[];
   isLoading: boolean;
-  moviesSearch: any;
+  moviesSearch: MoviesSearch;
+  movieDetail: MovieDBNowPlaying | null;
   getDetailMovie: any;
-  movieDetail: any;
   addFavMovie: any;
-  tempMoviesFav: any;
+  tempMoviesFav: MovieAddFavorite[];
 }
 
 export const MoviesContext = createContext<MoviesContextState | null>(null);
@@ -33,7 +33,7 @@ export const MoviesContext = createContext<MoviesContextState | null>(null);
 export const MoviesProvider: React.FC<Props> = ({ children }) => {
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
   const [recentlyAdd, setRecentlyAdd] = useState<Movie[]>([]);
-  const [moviesSearch, setMoviesSearch] = useState<MoviesSearch[]>([]);
+  const [moviesSearch, setMoviesSearch] = useState<MoviesSearch | null>(null);
   const [movieDetail, setMovieDetail] = useState<MovieDBNowPlaying | null>(
     null
   );
@@ -104,6 +104,7 @@ export const MoviesProvider: React.FC<Props> = ({ children }) => {
             setIsLoading(false);
           }, 2000);
           setMoviesSearch(data);
+          console.log(data);
         });
     } catch (error) {
       console.log(error);

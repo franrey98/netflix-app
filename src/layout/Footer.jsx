@@ -55,6 +55,7 @@ const Text = styled.p`
 `;
 
 const Footer = ({ color }) => {
+  console.log(color);
   return (
     <Box>
       <Container>

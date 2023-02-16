@@ -1,6 +1,6 @@
 import React from "react";
-import { useMovies } from "../../hooks/useMovies.jsx";
-import Spinner from "../../utils/Spinner.jsx";
+import { useMovies } from "../../hooks/useMovies.js";
+import Spinner from "../../utils/Spinner.js";
 
 const Container = ({ children }) => {
   const { isLoading } = useMovies();

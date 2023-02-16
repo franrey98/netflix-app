@@ -59,7 +59,7 @@ const CardSearch = ({ movie }) => {
 
   let lengthOverview = movie?.overview.substring(0, 220);
 
-  const handleSubmit = (id) => {
+  const handleSubmit = (id: number) => {
     getDetailMovie(id);
     navigate(`/resultSearch/${id}`);
   };

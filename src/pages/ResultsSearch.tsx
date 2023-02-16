@@ -5,6 +5,7 @@ import Footer from "../layout/Footer";
 import styled from "styled-components";
 import Nav from "../components/Nav";
 import Spinner from "../utils/Spinner";
+import { Movie } from "../interfaces/interfaceMovieDetail";
 
 const Container = styled.div`
   display: flex;
@@ -68,7 +69,6 @@ export const BoxError = styled.div`
 
 const ResultsSearch = () => {
   const { moviesSearch, isLoading } = useMovies();
-  const colorResult = true;
 
   // Filtrar por estrellas, hacer funcionabilidad.Ejemplo =>
   // console.log(
@@ -83,13 +83,13 @@ const ResultsSearch = () => {
         </BoxNav>
         <Spinner />
         <BoxFooter>
-          <Footer color={colorResult} />
+          <Footer color />
         </BoxFooter>
       </BoxError>
     );
   }
 
-  if (moviesSearch?.length === 0) {
+  if (moviesSearch === null) {
     return (
       <BoxError>
         <BoxNav>
@@ -97,7 +97,7 @@ const ResultsSearch = () => {
         </BoxNav>
         <p>Error on the page, please go back to the beginning</p>
         <BoxFooter>
-          <Footer color={colorResult} />
+          <Footer color />
         </BoxFooter>
       </BoxError>
     );
@@ -113,13 +113,15 @@ const ResultsSearch = () => {
           <Text>Search results</Text>
           <TextLength>{moviesSearch?.results?.length}</TextLength>
         </Box>
-        {moviesSearch?.results?.length === 0 && (
+        {moviesSearch?.total_results === 0 && (
           <TextError>La busqueda es incorrecta</TextError>
         )}
         <BoxCard>
-          {moviesSearch?.results?.slice(0, 10).map((movie) => (
-            <CardSearch movie={movie} key={movie.id} />
-          ))}
+          {moviesSearch?.results
+            ?.slice(0, 10)
+            .map((movie: Record<string, number>) => (
+              <CardSearch movie={movie} key={movie.id} />
+            ))}
         </BoxCard>
       </Container>
     </>

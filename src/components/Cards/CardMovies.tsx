@@ -3,7 +3,7 @@ import { URL_IMG } from "../../context/MoviesContext";
 
 const CardMovies = ({ item }) => {
   return (
-    <div>
+    <>
       <img
         style={{
           width: "90%",
@@ -15,7 +15,7 @@ const CardMovies = ({ item }) => {
         src={`${URL_IMG + item?.poster_path}`}
         alt="poster img"
       />
-    </div>
+    </>
   );
 };
 
