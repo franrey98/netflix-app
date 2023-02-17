@@ -8,9 +8,9 @@ import {
   MoviesSearch,
 } from "../interfaces/interfaceMovieDetail";
 
-export const URL = process.env.REACT_APP_API_ROUTE;
-export const KEY = process.env.REACT_APP_API_KEY;
-export const URL_IMG = process.env.REACT_APP_IMAGE_ROUTE;
+export const URL = "https://api.themoviedb.org";
+export const KEY = "da5a9f6d380baa4e1e312737187964bd";
+export const URL_IMG = "https://image.tmdb.org/t/p/original";
 
 interface Props {
   children: React.ReactNode;
